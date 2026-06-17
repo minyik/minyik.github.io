@@ -215,23 +215,21 @@
 @media all and (max-width: 1440px) {
     #section4 { height: 270px; }
     #section4 .desc_box > p { font-size: 1.4rem; }
-    #section4 .desc_box > a.btn_email { padding: 16px 44px; font-size: 1.125rem; }
 }
 @media all and (max-width: 1260px) {
     #section4 .desc_box { gap: 20px; }
     #section4 .desc_box > p { font-size: 1.25rem; }
-    #section4 .desc_box > a.btn_email { padding: 15px 40px; font-size: 1rem; }
 }
 @media all and (max-width: 1024px) {
     #section4 { height: 220px; margin-bottom: 2rem; }
     #section4 .desc_box > p { font-size: 1rem; }
-    #section4 .desc_box > a.btn_email { padding: 14px 36px; font-size: 0.938rem; }
 }
 @media all and (max-width: 800px) {
     #section4 .desc_box { gap: 15px; white-space: normal; width: 80%; }
     #section4 .desc_box > p { font-size: 0.875rem; line-height: 1.7; }
     #section4 .desc_box > p > br { display: none; }
-    #section4 .desc_box > a.btn_email { padding: 12px 28px; font-size: 0.875rem; }
+    #section4 .desc_box > .btn_box { gap: 5px; }
+    #section4 .desc_box > .btn_box > a { padding: 12px 15px; font-size: 0.875rem; }
 }
 
 

@@ -168,6 +168,16 @@ function filterCards(category, btn) {
     render();
 }
 
+function preloadDescImages() {
+    document.querySelectorAll('.portfolio_card').forEach(card => {
+        const src = card.dataset.descImg;
+        if (src) {
+            const img = new Image();
+            img.src = src;
+        }
+    });
+}
+
 function initPortfolio() {
     captureOriginalOrder();
     shuffleAllCards();
@@ -241,18 +251,23 @@ function initModal() {
         const card = e.target.closest('.portfolio_card');
         if (!card) return;
 
+        const newSrc = card.dataset.descImg || '';
+
         modalImg.style.transition = 'none';
         modalImg.style.opacity = '0';
-        modalImg.removeAttribute('src');
 
-        void modalImg.offsetHeight;
-
-        modalImg.onload = () => {
-            modalImg.style.transition = 'opacity 0.3s ease';
-            modalImg.style.opacity = '1';
-        };
-
-        modalImg.src = card.dataset.descImg || '';
+        if (modalImg.src !== newSrc) {
+            modalImg.onload = () => {
+                modalImg.style.transition = 'opacity 0.3s ease';
+                modalImg.style.opacity = '1';
+            };
+            modalImg.src = newSrc;
+        } else {
+            requestAnimationFrame(() => {
+                modalImg.style.transition = 'opacity 0.3s ease';
+                modalImg.style.opacity = '1';
+            });
+        }
 
         modalTitle.textContent = card.querySelector('h3')?.textContent || '';
         modalLink.href = card.dataset.link || '#';
