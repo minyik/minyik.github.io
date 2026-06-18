@@ -230,6 +230,9 @@ function initModal() {
     
     if (!modal || !modalBody || !portfolioGrid) return;
 
+const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+if (!isMobile) {
     let targetScrollTop = 0;
     let currentScrollTop = 0;
 
@@ -244,10 +247,14 @@ function initModal() {
         modalBody.scrollTop = currentScrollTop;
         requestAnimationFrame(smoothModalScroll);
     }
+    smoothModalScroll();
+}
 
-    if (!('ontouchstart' in window)) {
-        smoothModalScroll();
-    }
+if (isMobile) {
+    modalBody.addEventListener('touchmove', (e) => {
+        e.stopPropagation();
+    }, { passive: true });
+}
 
 
     portfolioGrid.addEventListener('click', e => {
@@ -284,8 +291,6 @@ function initModal() {
 
         modalLink.style.display = card.dataset.link ? '' : 'none';
 
-        targetScrollTop = 0;
-        currentScrollTop = 0;
         modalBody.scrollTop = 0;
 
         const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
