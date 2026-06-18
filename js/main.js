@@ -234,32 +234,20 @@ function initModal() {
     let currentScrollTop = 0;
 
     modalBody.addEventListener('wheel', (e) => {
-            e.stopPropagation();
-            targetScrollTop += e.deltaY;
-            targetScrollTop = Math.max(0, Math.min(targetScrollTop, modalBody.scrollHeight - modalBody.clientHeight));
-        }, { passive: true });
-
-        let touchStartY = 0;
-
-        modalBody.addEventListener('touchstart', (e) => {
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-
-        modalBody.addEventListener('touchmove', (e) => {
-            e.stopPropagation();
-            const deltaY = touchStartY - e.touches[0].clientY;
-            touchStartY = e.touches[0].clientY;
-
-            targetScrollTop += deltaY;
-            targetScrollTop = Math.max(0, Math.min(targetScrollTop, modalBody.scrollHeight - modalBody.clientHeight));
-        }, { passive: true });
+        e.stopPropagation();
+        targetScrollTop += e.deltaY;
+        targetScrollTop = Math.max(0, Math.min(targetScrollTop, modalBody.scrollHeight - modalBody.clientHeight));
+    }, { passive: true });
 
     function smoothModalScroll() {
         currentScrollTop += (targetScrollTop - currentScrollTop) * 0.08;
         modalBody.scrollTop = currentScrollTop;
         requestAnimationFrame(smoothModalScroll);
     }
-    smoothModalScroll();
+
+    if (!('ontouchstart' in window)) {
+        smoothModalScroll();
+    }
 
 
     portfolioGrid.addEventListener('click', e => {
