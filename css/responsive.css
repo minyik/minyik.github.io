@@ -29,14 +29,18 @@
     #section1 .main_title > ul.sub_title > li::before { position: absolute; left: -40px; }
 }
 @media all and (max-width: 800px) {
-    #section1 { height: 50vh; }
-    #section1 .main_title { right: -10%; bottom: 15%; transform: none; align-items: flex-start; gap: 15px; }
-    #section1 .main_title > ul.sub_title { gap: 30px; }
-    #section1 .main_title > ul.sub_title > li {  font-size: var(--font-sm);  }
-    #section1 .main_title > ul.sub_title > li::before { left: -20px; }
-    #section1 .main_title > h1 { font-size: clamp(3.5rem, 12vw, 5rem); }
+    #section1 { height: 60vh; }
+    #section1 .main_title { right: -5%; bottom: 15%; transform: none; align-items: flex-start; gap: 15px; }
+    #section1 .main_title > ul.sub_title { gap: 5px 20px; }
+    #section1 .main_title > ul.sub_title > li { font-size: var(--font-sm); }
+    #section1 .main_title > ul.sub_title > li::before { left: -10px; }
+    #section1 .main_title > h1 { font-size: clamp(3.2rem, 12vw, 5rem); }
 }
-
+@media all and (max-width: 500px) {
+    #section1 .main_title > ul.sub_title { flex-wrap: wrap; max-width: 300px; }
+    #section1 .main_title > ul.sub_title > li:nth-child(3) { padding-left: 20px; }
+    #section1 .main_title > ul.sub_title > li:nth-child(3)::before { left: 10px; }
+}
 
 /* ---------- section2 ---------- */
 @media all and (max-width: 1600px) {
