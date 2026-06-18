@@ -143,14 +143,13 @@
 .modal_container .modal_header_actions .modal_close > i { padding-top: 2px; }
 
 /* desc */
-.modal_container .modal_body { padding: 40px; flex: 1; overflow-y: scroll; min-height: 0; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; will-change: scroll-position; }
+.modal_container .modal_body { padding: 40px; flex: 1; overflow-y: auto; min-height: 0; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
 .modal_container .modal_body::-webkit-scrollbar { width: 4px; }
 .modal_container .modal_body::-webkit-scrollbar-track { background: #f5f5f5; }
 .modal_container .modal_body::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
 .modal_container .modal_body > p { text-align: right; margin-bottom: 15px; font-size: 14px; color: #333; font-weight: 400; } 
 .modal_container .modal_body > p > span { color: #333; font-family: 'KIMM'; font-weight: 500; }
-.modal_container .modal_body > img { width: 100%; height: auto; display: block; }
-
+.modal_container .modal_body > img { width: 100%; height: auto; display: block; will-change: opacity, transform; }
 
 /* ---------- section4 ---------- */
 #section4 { position: relative; height: 300px; margin-bottom: 3rem; overflow: hidden; }

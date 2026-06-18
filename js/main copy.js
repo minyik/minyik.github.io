@@ -227,21 +227,40 @@ function initModal() {
     const modalClose = document.querySelector('.modal_close');
     const modalBody = document.querySelector('.modal_body');
     const portfolioGrid = document.getElementById('portfolioGrid');
-
+    
     if (!modal || !modalBody || !portfolioGrid) return;
 
-    // ✅ lenis가 modal_body 스크롤 가로채는 것 차단
+    let targetScrollTop = 0;
+    let currentScrollTop = 0;
+
     modalBody.addEventListener('wheel', (e) => {
-        e.stopPropagation();
-    }, { passive: true });
+            e.stopPropagation();
+            targetScrollTop += e.deltaY;
+            targetScrollTop = Math.max(0, Math.min(targetScrollTop, modalBody.scrollHeight - modalBody.clientHeight));
+        }, { passive: true });
 
-    modalBody.addEventListener('touchstart', (e) => {
-        e.stopPropagation();
-    }, { passive: true });
+        let touchStartY = 0;
 
-    modalBody.addEventListener('touchmove', (e) => {
-        e.stopPropagation();
-    }, { passive: true });
+        modalBody.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        modalBody.addEventListener('touchmove', (e) => {
+            e.stopPropagation();
+            const deltaY = touchStartY - e.touches[0].clientY;
+            touchStartY = e.touches[0].clientY;
+
+            targetScrollTop += deltaY;
+            targetScrollTop = Math.max(0, Math.min(targetScrollTop, modalBody.scrollHeight - modalBody.clientHeight));
+        }, { passive: true });
+
+    function smoothModalScroll() {
+        currentScrollTop += (targetScrollTop - currentScrollTop) * 0.08;
+        modalBody.scrollTop = currentScrollTop;
+        requestAnimationFrame(smoothModalScroll);
+    }
+    smoothModalScroll();
+
 
     portfolioGrid.addEventListener('click', e => {
         const card = e.target.closest('.portfolio_card');
@@ -249,9 +268,24 @@ function initModal() {
 
         const newSrc = card.dataset.descImg || '';
 
+        modalImg.style.transition = 'none';
+        modalImg.style.opacity = '0';
+
+        if (modalImg.src !== newSrc) {
+            modalImg.onload = () => {
+                modalImg.style.transition = 'opacity 0.3s ease';
+                modalImg.style.opacity = '1';
+            };
+            modalImg.src = newSrc;
+        } else {
+            requestAnimationFrame(() => {
+                modalImg.style.transition = 'opacity 0.3s ease';
+                modalImg.style.opacity = '1';
+            });
+        }
+
         modalTitle.textContent = card.querySelector('h3')?.textContent || '';
         modalLink.href = card.dataset.link || '#';
-        modalLink.style.display = card.dataset.link ? '' : 'none';
 
         modalTags.innerHTML = '';
         card.querySelectorAll('.card_tags li').forEach(tag => {
@@ -260,51 +294,31 @@ function initModal() {
             modalTags.appendChild(li);
         });
 
+        modalLink.style.display = card.dataset.link ? '' : 'none';
+
+        targetScrollTop = 0;
+        currentScrollTop = 0;
         modalBody.scrollTop = 0;
 
         const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
         document.body.style.paddingRight = scrollbarWidth + 'px';
         const header = document.querySelector('#header');
         if (header) header.style.paddingRight = scrollbarWidth + 'px';
+
         if (lenis) lenis.stop();
 
-        // 이미지 초기화
-        modalImg.style.transition = 'none';
-        modalImg.style.opacity = '0';
-        modalImg.style.transform = 'translateY(12px)';
-        modalImg.style.willChange = 'opacity, transform';
-
-        // 모달 먼저 열기
         requestAnimationFrame(() => {
             modal.classList.add('active');
         });
-
-        // 이미지 프리로드 후 부드럽게 등장
-        const preload = new Image();
-        preload.onload = () => {
-            modalImg.src = newSrc;
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    modalImg.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
-                    modalImg.style.opacity = '1';
-                    modalImg.style.transform = 'translateY(0)';
-                });
-            });
-        };
-        preload.onerror = () => {
-            modalImg.src = newSrc;
-            modalImg.style.opacity = '1';
-            modalImg.style.transform = 'translateY(0)';
-        };
-        preload.src = newSrc;
     });
+
 
     function closeModal() {
         modal.classList.remove('active');
         document.body.style.paddingRight = '';
         const header = document.querySelector('#header');
         if (header) header.style.paddingRight = '';
-        if (lenis) lenis.start();
+        if (lenis) lenis.start(); 
     }
 
     if (modalClose) {

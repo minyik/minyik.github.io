@@ -234,6 +234,7 @@
     #section4 .desc_box { gap: 15px; white-space: normal; width: 80%; }
     #section4 .desc_box > p { font-size: 0.875rem; line-height: 1.7; }
     #section4 .desc_box > p > br { display: none; }
+    
     #section4 .desc_box > .btn_box { gap: 5px; }
     #section4 .desc_box > .btn_box > a { padding: 12px 15px; font-size: 0.875rem; }
 }
