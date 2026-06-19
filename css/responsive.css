@@ -203,7 +203,7 @@
 }
 @media all and (max-width: 800px) {
     .modal_container { width: 90vw; max-width: 90vw; height: 88svh; border-radius: 10px; }
-    .modal_container .modal_header { gap: 20px; }
+    .modal_container .modal_header { gap: 15px; }
     .modal_container .modal_header_info { gap: 8px; }
     .modal_container .modal_header_info > ul > li { font-size: var(--font-xs); padding: 4px 10px; }
     .modal_container .modal_header_actions { gap: 8px; }
@@ -211,7 +211,7 @@
     .modal_container .modal_header_actions .modal_link .text-hover { left: 46%; }
     .modal_container .modal_header_actions .modal_link > i { font-size: 0.938rem; padding-top: 0; }
 
-    .modal_container .modal_header_actions .modal_close { width: 40px; height: 40px; font-size: 0.938rem; }
+    .modal_container .modal_header_actions .modal_close { width: 40px; height: 40px; font-size: 0.938rem; margin-left: auto; }
     .modal_container .modal_header_actions .modal_close > i { padding-top: 0; }
     .modal_container .modal_body { padding: 15px; }
 }
