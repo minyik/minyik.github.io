@@ -230,7 +230,6 @@ function initModal() {
 
     if (!modal || !modalBody || !portfolioGrid) return;
 
-    // ✅ lenis가 modal_body 스크롤 가로채는 것 차단
     modalBody.addEventListener('wheel', (e) => {
         e.stopPropagation();
     }, { passive: true });
@@ -266,20 +265,18 @@ function initModal() {
         document.body.style.paddingRight = scrollbarWidth + 'px';
         const header = document.querySelector('#header');
         if (header) header.style.paddingRight = scrollbarWidth + 'px';
-        if (lenis) lenis.stop();
+        if (lenis) lenis.destroy();
 
-        // 이미지 초기화
+
         modalImg.style.transition = 'none';
         modalImg.style.opacity = '0';
         modalImg.style.transform = 'translateY(12px)';
         modalImg.style.willChange = 'opacity, transform';
 
-        // 모달 먼저 열기
         requestAnimationFrame(() => {
             modal.classList.add('active');
         });
 
-        // 이미지 프리로드 후 부드럽게 등장
         const preload = new Image();
         preload.onload = () => {
             modalImg.src = newSrc;
@@ -304,7 +301,11 @@ function initModal() {
         document.body.style.paddingRight = '';
         const header = document.querySelector('#header');
         if (header) header.style.paddingRight = '';
-        if (lenis) lenis.start();
+        if (lenis) {
+            lenis = new Lenis({ duration: 1.8, easing: (t) => 1 - Math.pow(1 - t, 4), smooth: true });
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((t) => lenis.raf(t * 1000));
+        }
     }
 
     if (modalClose) {
