@@ -23,10 +23,11 @@
 }
 @media all and (max-width: 1260px) { 
     #section1 { height: 70vh; }
-    #section1 .main_title > h1 { font-size: var(--font-3xl); }
-    #section1 .main_title > ul.sub_title { gap: 80px; }
-    #section1 .main_title > ul.sub_title > li { font-size: var(--font-md); }
-    #section1 .main_title > ul.sub_title > li::before { position: absolute; left: -40px; }
+    #section1 .main_title { right: -3%; }
+    #section1 .main_title > h1 { font-size: 5.5rem; }
+    #section1 .main_title > ul.sub_title { gap: 40px; }
+    #section1 .main_title > ul.sub_title > li { font-size: var(--font-base); }
+    #section1 .main_title > ul.sub_title > li::before { position: absolute; left: -20px; }
 }
 @media all and (max-width: 800px) {
     #section1 { height: 60vh; }
