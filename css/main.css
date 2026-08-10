@@ -179,9 +179,9 @@
 
 
 /* ---------- back top ---------- */
-#back-top { position: fixed; bottom: 45px; right: 45px; z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease-in-out; }
+#back-top { position: fixed; bottom: 40px; right: 40px; z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease-in-out; }
 #back-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
-#back-top a { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 54px; height: 90px; gap: 3px; background: var(--main-color1); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; color: #fff; }
+#back-top a { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 50px; height: 90px; gap: 3px; background: var(--main-color1); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; color: #fff; }
 #back-top a:hover { background-color: #183a70; transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0, 0, 0.2); }
 #back-top a > p { font-size: 1rem; }
 #back-top a > p { color: #fff; font-family: 'KIMM', sans-serif; font-size: 0.875rem; font-weight: bold; margin: 0; }
