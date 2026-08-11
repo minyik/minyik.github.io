@@ -56,8 +56,6 @@
 
     #section2 .profile_info > p.profile_intro_desc { font-size: 1.375rem; }
     #section2 .profile_info .profile_introduce_wrap .item { gap: 20px; }
-
-    #section2 ul.btn_portfolio { grid-template-columns: repeat(2, 1fr); gap: 25px; }
 }
 @media all and (max-width: 1260px) {
     #section2 { gap: 80px; }
@@ -90,8 +88,16 @@
     #section2 .profile_info .profile_introduce_wrap .item { gap: 20px; }
     #section2 .profile_info .profile_introduce_wrap .item > span.item_label { min-width: 90px; }
     #section2 .profile_info .profile_introduce_wrap .item > ul.item_content > li { font-size: var(--font-sm); }
-    #section2 ul.btn_portfolio { gap: 20px; }
-    #section2 ul.btn_portfolio > li > a { padding: 40px; border-radius: 20px; }
+
+    #section2 ul.btn_portfolio { gap: 25px; }
+}
+@media all and (max-width: 900px) {
+    #section2 ul.btn_portfolio { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    #section2 ul.btn_portfolio > li { width: auto; height: 180px; }
+    #section2 ul.btn_portfolio > li > a { height: 100%; padding: 25px; border-radius: 15px; gap: 20px; }
+    #section2 ul.btn_portfolio > li > a .desc > p { font-size: var(--font-base); line-height: 1.2; }
+    #section2 ul.btn_portfolio > li > a .desc > span { font-size: var(--font-sm); line-height: 1.4; }
+    #section2 ul.btn_portfolio > li > a > img { margin-top: auto; height: 25px; }
 }
 @media all and (max-width: 800px) {
     #section2 { gap: 30px; }
@@ -124,13 +130,6 @@
     #section2 .profile_info .profile_introduce_wrap .item > ul.item_content > li > p.edu_detail,
     #section2 .profile_info .profile_introduce_wrap .item > ul.item_content > li > p.work_detail,
     #section2 .profile_info .profile_introduce_wrap .item > ul.item_content > li > p.lic_detail { font-size: var(--font-sm); }
-
-    #section2 ul.btn_portfolio { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-    #section2 ul.btn_portfolio > li { width: auto; height: 180px; }
-    #section2 ul.btn_portfolio > li > a { height: 100%; padding: 25px; border-radius: 10px; gap: 20px; }
-    #section2 ul.btn_portfolio > li > a .desc > p { font-size: var(--font-base); line-height: 1.2; }
-    #section2 ul.btn_portfolio > li > a .desc > span { font-size: var(--font-sm); line-height: 1.4; }
-    #section2 ul.btn_portfolio > li > a > img { margin-top: auto; height: 25px; }
 }
 
 
